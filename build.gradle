@@ -1,0 +1,57 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.1.RELEASE'
+		springLoadedVersion = '1.2.5.RELEASE'
+	}
+	repositories {
+		mavenLocal()
+		jcenter()
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath("org.springframework:springloaded:${springLoadedVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+jar {
+	baseName = 'darkhorse'
+	version = '0.0.1-SNAPSHOT'
+}
+
+repositories {
+	mavenLocal()
+	jcenter()
+	mavenCentral()
+}
+
+ext {
+	superCsvVersion = '2.4.0'
+}
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-batch')
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile("net.sf.supercsv:super-csv:${superCsvVersion}")
+	compile("net.sf.supercsv:super-csv-java8:${superCsvVersion}")
+	compile("org.apache.httpcomponents:httpclient:4.5.3")
+	compile("org.apache.poi:poi:3.15")
+	compile("org.apache.poi:poi-ooxml:3.15")
+	compile("org.json:json:20160810")
+	compile("org.apache.commons:commons-lang3:3.3.2")
+	compile("org.apache.commons:commons-collections4:4.1")
+	compile("org.apache.commons:commons-compress:1.13")
+	compile("org.apache.commons:commons-math3:3.6.1")
+	compile("commons-io:commons-io:2.5")
+
+	compile("com.google.guava:guava:21.0")
+
+	runtime('org.springframework.boot:spring-boot-devtools')
+	runtime('mysql:mysql-connector-java')
+	compileOnly('org.projectlombok:lombok')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
